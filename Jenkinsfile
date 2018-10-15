@@ -10,12 +10,10 @@ node {
    }
    stage('Build') {
       // Run the maven build
- container('build') {
       if (isUnix()) {
           sh './gradlew clean'
       } else {
            bat 'gradlew.bat clean'
       }
-   }
    }
 }

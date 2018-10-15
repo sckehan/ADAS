@@ -21,6 +21,7 @@ node {
    def server
    def buildInfo
    def rtGradle
+   /*
    stage('Artifactory Configuration'){
      //def server = Artifactory.newServer url: "http://192.168.248.170:8083/artifactory", credentialsId: 'jfrog-artifactory'
      //def buildInfo
@@ -29,13 +30,32 @@ node {
       rtGradle.deployer repo:'aliyun', server: server
       rtGradle.tool = "gradle"
    }
-   
+     */
    stage('Gradle build'){
-       buildInfo = rtGradle.run rootDir: "aliyun/", buildFile: 'build.gradle', tasks: 'clean artifactoryPublish'
+    server= Artifactory.server "artifactory"
+    rtGradle = Artifactory.newBuildInfo()
+    rtGradle.resolver server: server, repo: 'libs-release'
+    rtGradle.deployer server: server, repo: 'libs-release-local'
+
+    //Use Gradle Wrapper
+    rtGradle.useWrapper = true
+
+    //Creates buildinfo
+    def buildInfo = Artifactory.newBuildInfo()
+    buildInfo.env.capture = true
+    buildInfo.env.filter.addInclude("*")
+
+    // Run Gradle:
+    rtGradle.run rootDir: "./", buildFile: 'build.gradle', tasks: 'clean artifactoryPublish', buildInfo: buildInfo
+
+    // Publish the build-info to Artifactory:
+    server.publishBuildInfo buildInfo
+      
+       //buildInfo = rtGradle.run rootDir: "aliyun/", buildFile: 'build.gradle', tasks: 'clean artifactoryPublish'
    }
-   
+   /*
    stage ('Publish build info') {
         server.publishBuildInfo buildInfo
     }
-   
+   */
 }

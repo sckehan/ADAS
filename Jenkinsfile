@@ -27,7 +27,7 @@ node {
       server= Artifactory.server "artifactory"
       rtGradle = Artifactory.newBuildInfo()
       rtGradle.deployer repo:'aliyun', server: server
-      rtGradle.tool = "Gradle-2.4"
+      rtGradle.tool = "gradle"
    }
    
    stage('Gradle build'){

@@ -26,14 +26,14 @@ node {
      //def server = Artifactory.newServer url: "http://192.168.248.170:8083/artifactory", credentialsId: 'jfrog-artifactory'
      //def buildInfo
       server= Artifactory.server "artifactory"
-      rtGradle = Artifactory.newBuildInfo()
+      rtGradle = Artifactory.newGradleBuild()
       rtGradle.deployer repo:'aliyun', server: server
       rtGradle.tool = "gradle"
    }
      */
    stage('Gradle build'){
     server= Artifactory.server "artifactory"
-    rtGradle = Artifactory.newBuildInfo()
+    rtGradle = Artifactory.newGradleBuild()
     rtGradle.resolver server: server, repo: 'libs-release'
     rtGradle.deployer server: server, repo: 'libs-release-local'
 
@@ -41,7 +41,7 @@ node {
     rtGradle.useWrapper = true
 
     //Creates buildinfo
-    def buildInfo = Artifactory.newBuildInfo()
+    buildInfo = Artifactory.newBuildInfo()
     buildInfo.env.capture = true
     buildInfo.env.filter.addInclude("*")
 

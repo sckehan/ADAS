@@ -8,6 +8,7 @@ node {
       // **       in the global configuration.           
       //mvnHome = tool 'M3'
    }
+   /*
    stage('Build') {
       // Run the maven build
       if (isUnix()) {
@@ -16,10 +17,17 @@ node {
            bat 'gradlew.bat clean'
       }
    }
+   */
    stage('Artifactory Configuration'){
-     def server = Artifactory.newServer url: "http://192.168.248.170:8083/artifactory", credentialsId: 'jfrog-artifactory'
-     def buildInfo
-     buildInfo = Artifactory.newBuildInfo()
+     //def server = Artifactory.newServer url: "http://192.168.248.170:8083/artifactory", credentialsId: 'jfrog-artifactory'
+     //def buildInfo
+      def server= Artifactory.server "artifactory"
+      def buildInfo = Artifactory.newBuildInfo()
+      rtGradle.deployer repo:'aliyun', server: server
+   }
+   
+   stage('Gradle build'){
+       buildInfo = rtGradle.run rootDir: "aliyun/", buildFile: 'build.gradle', tasks: 'clean artifactoryPublish'
    }
    
    stage ('Publish build info') {

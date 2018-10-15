@@ -18,12 +18,16 @@ node {
       }
    }
    */
+   def server
+   def buildInfo
+   def rtGradle
    stage('Artifactory Configuration'){
      //def server = Artifactory.newServer url: "http://192.168.248.170:8083/artifactory", credentialsId: 'jfrog-artifactory'
      //def buildInfo
-      def server= Artifactory.server "artifactory"
-      def buildInfo = Artifactory.newBuildInfo()
+      server= Artifactory.server "artifactory"
+      rtGradle = Artifactory.newBuildInfo()
       rtGradle.deployer repo:'aliyun', server: server
+      rtGradle.tool = "Gradle-2.4"
    }
    
    stage('Gradle build'){

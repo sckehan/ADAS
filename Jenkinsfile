@@ -16,4 +16,14 @@ node {
            bat 'gradlew.bat clean'
       }
    }
+   stage('Artifactory Configuration'){
+     def server = Artifactory.newServer url: "http://192.168.248.170:8083/artifactory", credentialsId: 'jfrog-artifactory'
+     def buildInfo
+     buildInfo = Artifactory.newBuildInfo()
+   }
+   
+   stage ('Publish build info') {
+        server.publishBuildInfo buildInfo
+    }
+   
 }

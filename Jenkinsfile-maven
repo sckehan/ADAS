@@ -4,7 +4,7 @@ node("docker-64") {
     def buildInfo
 
     stage ('Clone') {
-        git url: 'https://github.com/jfrogdev/project-examples.git'
+        git url: 'https://github.com/sckehan/demo-maven-dev.git'
     }
 
     stage ('Artifactory configuration') {

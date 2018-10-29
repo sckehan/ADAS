@@ -1,1 +1,7 @@
 
+node{
+    stage ('Clone') {
+        git url: 'https://github.com/sckehan/demo-maven-dev.git'
+        sh "echo test"
+    }
+}

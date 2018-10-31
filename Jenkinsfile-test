@@ -5,7 +5,6 @@ pipeline {
            steps{
                 echo "some thing else"
             }
-             #sh "echo 'some thing else'"
       }
     }
 }

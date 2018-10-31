@@ -2,10 +2,7 @@ pipeline {
    agent any
    stages{
       stage ('Clone') {
-          steps{
-                echo "some thing else"
-            }
-         
+             echo "some thing else"
       }
     }
 }

@@ -1,6 +1,4 @@
-
-node{
-    stage ('Clone') {
-        sh "echo test"
-    }
+pipeline {
+   agent any
+   sh "echo test"
 }

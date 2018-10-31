@@ -3,7 +3,11 @@ pipeline {
    stages{
       stage ('Clone') {
            steps{
-                echo "some thing else"
+                 script {
+                    stage ('Checkout') {
+                     echo "some thing else"
+                    }
+                }
             }
       }
     }

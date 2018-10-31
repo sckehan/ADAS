@@ -5,10 +5,9 @@ import java.text.BreakIterator
 pipeline {
    agent any
    stages{
-     steps{
-         stage ('Clone') {
-         echo "some thing else"
+     stage('Initialize'){
+        node('master'){
+          echo "read deployenv"
          }
-      }
     }
 }

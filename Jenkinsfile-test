@@ -1,4 +1,6 @@
 pipeline {
    agent any
-   sh "echo test"
+   stage ('Clone') {
+      echo "some thing else"
+   }
 }

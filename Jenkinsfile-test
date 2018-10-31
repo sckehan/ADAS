@@ -1,6 +1,8 @@
 pipeline {
    agent any
-   stage ('Clone') {
-      echo "some thing else"
-   }
+   stages{
+      stage ('Clone') {
+         echo "some thing else"
+      }
+    }
 }

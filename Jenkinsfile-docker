@@ -1,14 +1,9 @@
 
-pipeline {
-    agent any
-    stages {
-    
-  // 编译镜像并push到仓库
-  def imagesName = '192.168.248.170:5010/vault:v1.${BUILD_NUMBER}'  
-  stage('Image Build And Push'){
-    docker.withRegistry('http://192.168.248.170:5010') {
-      docker.build(imagesName).push()
-    }
-  }
+node {
+    /* Requires the Docker Pipeline plugin to be installed */
+    docker.image('node:7-alpine').inside {
+        stage('Test') {
+            sh 'node --version'
+        }
     }
 }

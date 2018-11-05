@@ -2,6 +2,8 @@
 node {
     /* Requires the Docker Pipeline plugin to be installed */
      sh "docker login --username=whraocf@1482839772571430 --password=Daimler-RD registry.cn-qingdao.aliyuncs.com"
-     sh "docker pull registry.cn-qingdao.aliyuncs.com/gen4/image-pull-push-test:v1"
+     sh "docker pull registry.cn-qingdao.aliyuncs.com/gen4/ftao-component:v4"
+     sh "docker tag registry.cn-qingdao.aliyuncs.com/gen4/ftao-component:v4 registry.cn-qingdao.aliyuncs.com/gen4/image-pull-push-test:v2"
+     sh "docker push registry.cn-qingdao.aliyuncs.com/gen4/image-pull-push-test:v2"
     
 }

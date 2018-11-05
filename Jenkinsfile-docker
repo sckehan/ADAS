@@ -1,7 +1,7 @@
 
 node {
     /* Requires the Docker Pipeline plugin to be installed */
-    docker.image('registry.cn-beijing.aliyuncs.com/gen4/admin-server:latest').inside {
+    docker.image('registry.cn-qingdao.aliyuncs.com/gen4/image-pull-push-test:v1').inside {
         stage('Test') {
             sh 'node --version'
         }

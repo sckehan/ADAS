@@ -9,8 +9,10 @@ pipeline {
         }
         
         stage('Deploy'){
-          sh "kubectl version"
-          sh "kubectl create -f tomcat.yaml"
+            steps{
+                sh "kubectl version"
+                sh "kubectl create -f tomcat.yaml"
+            }
         }
     }
 }

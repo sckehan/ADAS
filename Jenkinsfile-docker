@@ -7,6 +7,6 @@ node {
      sh "docker push registry.cn-qingdao.aliyuncs.com/gen4/image-pull-push-test:v4"
    */
    sh "kubectl version"
-   sh "kubectl get pods -n test-cc"
+   sh "kubectl get pods -n test-compose"
     
 }

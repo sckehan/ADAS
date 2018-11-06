@@ -1,13 +1,27 @@
 
+pipeline {
+    agent any
+    stages {
+        stage('pull') {
+            steps {
+                sh 'kubectl get pods -n test-compose'
+            }
+        }
+    }
+}
+
+
+/*
 node {
-    /* Requires the Docker Pipeline plugin to be installed 
+     Requires the Docker Pipeline plugin to be installed 
      sh "docker login --username=whraocf@1482839772571430 --password=Daimler-RD registry.cn-qingdao.aliyuncs.com"
      sh "docker pull registry.cn-qingdao.aliyuncs.com/gen4/spring-config-server:v2"
      sh "docker tag registry.cn-qingdao.aliyuncs.com/gen4/spring-config-server:v2 registry.cn-qingdao.aliyuncs.com/gen4/image-pull-push-test:v4"
      sh "docker push registry.cn-qingdao.aliyuncs.com/gen4/image-pull-push-test:v4"
-   */
+  
    sh "kubectl version"
    sh "kubectl get pods -n test-compose"
    sh "kubectl create -f tomcat.yaml"
     
 }
+*/

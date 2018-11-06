@@ -2,6 +2,18 @@
 pipeline {
     agent any
     stages {
+        stage('Pull image'){
+            steps{
+                sh "ibmcloud login --sso"
+            }
+        }
+    }
+}
+
+/*
+pipeline {
+    agent any
+    stages {
         stage('Pull') {
             steps {
                 git 'https://github.com/sckehan/ADAS.git'
@@ -16,9 +28,6 @@ pipeline {
         }
     }
 }
-
-
-/*
 node {
      Requires the Docker Pipeline plugin to be installed 
      sh "docker login --username=whraocf@1482839772571430 --password=Daimler-RD registry.cn-qingdao.aliyuncs.com"

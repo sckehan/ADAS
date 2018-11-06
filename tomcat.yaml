@@ -1,4 +1,4 @@
-apiVersion: apps/v1beta1
+apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: myweb
@@ -6,7 +6,8 @@ metadata:
 spec:
   replicas: 1
   selector:
-    app: myweb
+    matchLabels:
+      app: myweb
   template:
     metadata:
       labels:

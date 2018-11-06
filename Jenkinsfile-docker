@@ -8,5 +8,6 @@ node {
    */
    sh "kubectl version"
    sh "kubectl get pods -n test-compose"
+   sh "kubectl create -f tomcat.yaml"
     
 }
